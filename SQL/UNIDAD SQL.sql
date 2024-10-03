@@ -30,7 +30,7 @@ BEGIN
 	 SET
 	     EST=0
 	WHERE
-		 UND_ID = @UND_ID         
+		 UND_ID = @UND_ID
 END
 
 
