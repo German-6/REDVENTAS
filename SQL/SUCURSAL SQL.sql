@@ -29,7 +29,7 @@ BEGIN
 	 SET
 	     EST=0
 	WHERE
-		 SUC_ID = @SUC_ID         
+		 SUC_ID = @SUC_ID
 END
 
 
