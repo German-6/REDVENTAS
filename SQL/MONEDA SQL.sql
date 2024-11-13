@@ -29,7 +29,7 @@ BEGIN
 	 SET
 	     EST=0
 	WHERE
-		 MON_ID = @MON_ID         
+		 MON_ID = @MON_ID
 END
 
 

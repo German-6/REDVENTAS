@@ -32,6 +32,14 @@
         /* TODO: Registro Datos */
         public function insert_usuario($suc_id,$usu_correo,$usu_nom,$usu_ape,$usu_cc,$usu_telf,$usu_pass,$rol_id){
             $conectar=parent::Conexion();
+
+            require_once("Usuario.php");
+            $usu=new Usuario();
+            $usu_img='';
+            if($_FILES["usu_img"]["name"] !=''){
+                $usu_img=$usu->upload_image();
+            }
+
             $sql="SP_I_USUARIO_01 ?,?,?,?,?,?,?,?";
             $query=$conectar->prepare($sql);
             $query->bindValue(1,$suc_id);
@@ -48,6 +56,16 @@
         /* TODO: Actualizar Datos */
         public function update_usuario($usu_id,$suc_id,$usu_correo,$usu_nom,$usu_ape,$usu_cc,$usu_telf,$usu_pass,$rol_id){
             $conectar=parent::Conexion();
+
+            require_once("Usuario.php");
+            $usu=new Usuario();
+            $usu_img='';
+            if($_FILES["usu_img"]["name"] !=''){
+                $usu_img=$usu->upload_image();
+            }else{
+                $usu_img = $POST["hidden_usuario_imagen"];
+            }
+
             $sql="SP_U_USUARIO_01 ?,?,?,?,?,?,?,?,?";
             $query=$conectar->prepare($sql);
             $query->bindValue(1,$usu_id);
@@ -60,6 +78,16 @@
             $query->bindValue(8,$usu_pass);
             $query->bindValue(9,$rol_id);
             $query->execute();
+        }
+
+        public function update_usuario_pass($usu_id,$usu_pass){
+            $conectar=parent::Conexion();
+            $sql="SP_U_USUARIO_02 ?,?";
+            $query=$conectar->prepare($sql);
+            $query->bindValue(1,$usu_id);
+            $query->bindValue(2,$usu_pass);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
          /* TODO:Acceso al Sistema */
@@ -99,6 +127,17 @@
                 }
             }else{
                 exit();
+            }
+        }
+
+        /* TODO: Subit imagen de usuario */
+        public function upload_image(){
+            if (isset($_FILES["usu_img"])){
+                $extension = explode('.', $_FILES['usu_img']['name']);
+                $new_name = rand() . '.' . $extension[1];
+                $destination = '../assets/usuario/' . $new_name;
+                move_uploaded_file($_FILES['usu_img']['tmp_name'], $destination);
+                return $new_name;
             }
         }
     }

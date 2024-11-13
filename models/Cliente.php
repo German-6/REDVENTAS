@@ -44,13 +44,13 @@
         }
 
         /* TODO: Actualizar Datos */
-        public function update_cliente($cli_id,$emp_id,$cli_nom,$cli_rut,$cli_telf,$cli_direcc,$cli_correo){
+        public function update_cliente($cli_id,$cli_nom,$emp_id,$cli_rut,$cli_telf,$cli_direcc,$cli_correo){
             $conectar=parent::Conexion();
             $sql="SP_U_CLIENTE_01 ?,?,?,?,?,?,?";
             $query=$conectar->prepare($sql);
             $query->bindValue(1,$cli_id);
-            $query->bindValue(2,$emp_id);
-            $query->bindValue(3,$cli_nom);
+            $query->bindValue(2,$cli_nom);
+            $query->bindValue(3,$emp_id);
             $query->bindValue(4,$cli_rut);
             $query->bindValue(5,$cli_telf);
             $query->bindValue(6,$cli_direcc);

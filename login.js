@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     $('#suc_id').select2();
 
-    $.post("http://localhost/REDVENTAS/controller/empresa.php?op=combo",{com_id:com_id},function(data){
+    $.post("controller/empresa.php?op=combo",{com_id:com_id},function(data){
         console.log(data);
         $("#emp_id").html(data);
     });
@@ -18,7 +18,7 @@ $(document).ready(function(){
         $("#emp_id").each(function(){
             emp_id = $(this).val();
 
-            $.post("http://localhost/REDVENTAS/controller/sucursal.php?op=combo",{emp_id:emp_id},function(data){
+            $.post("controller/sucursal.php?op=combo",{emp_id:emp_id},function(data){
                 console.log(data);
                 $("#suc_id").html(data);
             });

@@ -314,7 +314,7 @@
                                                                 <th scope="col">Proveedor</th>
                                                                 <th scope="col">Moneda</th>
                                                                 <th scope="col">Subtotal</th>
-                                                                <th scope="col">IGV</th>
+                                                                <th scope="col">IVA</th>
                                                                 <th scope="col">Total</th>
                                                             </tr>
                                                         </thead>
