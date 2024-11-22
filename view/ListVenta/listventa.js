@@ -12,7 +12,7 @@ $(document).ready(function(){
             'csvHtml5',
         ],
         "ajax":{
-            url:"../../controller/compra.php?op=listarcompra",
+            url:"../../controller/venta.php?op=listarventa",
             type:"post",
             data:{suc_id:suc_id}
         },
@@ -49,7 +49,8 @@ $(document).ready(function(){
 
 });
 
-function ver(compr_id){
+
+function ver(vent_id){
 
     $('#detalle_data').DataTable({
         "aProcessing": true,
@@ -61,9 +62,9 @@ function ver(compr_id){
             'csvHtml5',
         ],
         "ajax":{
-            url:"../../controller/compra.php?op=listardetalle",
+            url:"../../controller/venta.php?op=listardetalle",
             type:"post",
-            data:{compr_id:compr_id}
+            data:{vent_id:vent_id}
         },
         "bDestroy": true,
         "responsive": true,
@@ -96,13 +97,12 @@ function ver(compr_id){
         },
     });
 
-    $.post("../../controller/compra.php?op=calculo",{compr_id:compr_id},function(data){
+    $.post("../../controller/venta.php?op=calculo",{vent_id:vent_id},function(data){
         data=JSON.parse(data);
-        $('#txtsubtotal').html(data.COMPR_SUBTOTAL);
-        $('#txtiva').html(data.COMPR_IVA);
-        $('#txttotal').html(data.COMPR_TOTAL);
+        $('#txtsubtotal').html(data.VENT_SUBTOTAL);
+        $('#txtiva').html(data.VENT_IVA);
+        $('#txttotal').html(data.VENT_TOTAL);
     });
 
     $('#modaldetalle').modal('show');
 }
-
