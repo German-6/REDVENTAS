@@ -20,7 +20,7 @@
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        /* TODO: Eliminar o cambiar estado a Eliminado */
+        /* TODO: Eliminar o cambiar estado a eliminado */
         public function delete_usuario($usu_id){
             $conectar=parent::Conexion();
             $sql="SP_D_USUARIO_01 ?";
@@ -29,8 +29,8 @@
             $query->execute();
         }
 
-        /* TODO: Registro Datos */
-        public function insert_usuario($suc_id,$usu_correo,$usu_nom,$usu_ape,$usu_cc,$usu_telf,$usu_pass,$rol_id){
+        /* TODO: Registro de datos */
+        public function insert_usuario($suc_id,$usu_correo,$usu_nom,$usu_ape,$usu_cc,$usu_telf,$usu_pass,$rol_id,$usu_img){
             $conectar=parent::Conexion();
 
             require_once("Usuario.php");
@@ -40,7 +40,7 @@
                 $usu_img=$usu->upload_image();
             }
 
-            $sql="SP_I_USUARIO_01 ?,?,?,?,?,?,?,?";
+            $sql="SP_I_USUARIO_01 ?,?,?,?,?,?,?,?,?";
             $query=$conectar->prepare($sql);
             $query->bindValue(1,$suc_id);
             $query->bindValue(2,$usu_correo);
@@ -50,11 +50,12 @@
             $query->bindValue(6,$usu_telf);
             $query->bindValue(7,$usu_pass);
             $query->bindValue(8,$rol_id);
+            $query->bindValue(9,$usu_img);
             $query->execute();
         }
 
-        /* TODO: Actualizar Datos */
-        public function update_usuario($usu_id,$suc_id,$usu_correo,$usu_nom,$usu_ape,$usu_cc,$usu_telf,$usu_pass,$rol_id){
+        /* TODO:Actualizar Datos */
+        public function update_usuario($usu_id,$suc_id,$usu_correo,$usu_nom,$usu_ape,$usu_cc,$usu_telf,$usu_pass,$rol_id,$usu_img){
             $conectar=parent::Conexion();
 
             require_once("Usuario.php");
@@ -66,7 +67,7 @@
                 $usu_img = $POST["hidden_usuario_imagen"];
             }
 
-            $sql="SP_U_USUARIO_01 ?,?,?,?,?,?,?,?,?";
+            $sql="SP_U_USUARIO_01 ?,?,?,?,?,?,?,?,?,?";
             $query=$conectar->prepare($sql);
             $query->bindValue(1,$usu_id);
             $query->bindValue(2,$suc_id);
@@ -77,6 +78,7 @@
             $query->bindValue(7,$usu_telf);
             $query->bindValue(8,$usu_pass);
             $query->bindValue(9,$rol_id);
+            $query->bindValue(10,$usu_img);
             $query->execute();
         }
 
@@ -90,8 +92,8 @@
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
-         /* TODO:Acceso al Sistema */
-         public function login(){
+        /* TODO:Acceso al Sistema */
+        public function login(){
             $conectar=parent::Conexion();
             if (isset($_POST["enviar"])){
                 /* TODO: Recepcion de Parametros desde la Vista Login */

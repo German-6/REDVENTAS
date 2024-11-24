@@ -40,7 +40,7 @@
                     <div class="row gy-2">
                         <div class="col-md-12">
                             <div>
-                                <label for="valueInput" class="form-label">C.C.</label>
+                                <label for="valueInput" class="form-label">Cc</label>
                                 <input type="text" class="form-control" id="usu_cc" name="usu_cc" required/>
                             </div>
                         </div>

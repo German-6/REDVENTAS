@@ -1,3 +1,4 @@
+
 var suc_id = $('#SUC_IDx').val();
 
 function init(){
